@@ -48,8 +48,8 @@
       return {
         message: [],
         numberofVehicles: 12,
-        blur: 10,
-        radius: 7,
+        blur: 13,
+        radius: 9,
         coordinates: { "type": "FeatureCollection", "features": [ { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.5409276524912, 8.947595086167691 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.5409445910039, 8.94758513955327 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.5408305431786, 8.947585553847167 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.5409817601673, 8.947597956610702 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.54087855398134, 8.94758130525557 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.54081530724056, 8.94758405486753 ] } } ] }
 ,
         // vector: new VectorSource({
@@ -313,7 +313,7 @@
           projection: 'EPSG:4326',
           units: "degrees",
           zoom: 19,
-          //maxZoom: 13,
+          maxZoom: 22,
           minZoom: 0,
           //maxResolution: 2605.2421875,
           //center: proj.fromLonLat([125.54067,8.94760]),

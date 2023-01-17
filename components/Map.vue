@@ -17,19 +17,19 @@
   
   <script>
   import "ol/ol.css";
-  import * as proj from 'ol/proj';
-  import { Feature, Map, View } from "ol";
+  import { Map, View } from "ol";
   import TileLayer from "ol/layer/Tile";
   import OSM from "ol/source/OSM";
   import VectorSource from "ol/source/Vector";
   import GeoJSON from "ol/format/GeoJSON";
-  import { Heatmap, Heatmap as HeatmapLayer } from "ol/layer";
+  import { Heatmap as HeatmapLayer } from "ol/layer";
   
   export default {
     data() {
       return {
         message: [],
-        numberofVehicles: 12,
+        totalNumberofVehicles: 0,
+        numberofVehicles: 0,
         blur: 13,
         radius: 9,
         coordinates: { "type": "FeatureCollection", "features": [ { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.5409276524912, 8.947595086167691 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.5409445910039, 8.94758513955327 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.5408305431786, 8.947585553847167 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.5409817601673, 8.947597956610702 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.54087855398134, 8.94758130525557 ] } }, { "type": "Feature", "geometry": { "type": "Point", "coordinates": [ 125.54081530724056, 8.94758405486753 ] } } ] },
@@ -42,7 +42,13 @@
       };
     },
 
-    methods: { 
+    methods: {
+    // countTotalNumberofVehicles() {
+    //   let count = 0;
+    //   for(let i = 0; i < this.numberofVehicles; i++){
+        
+    //   }
+    // },
 
     tokenizeMessage(message) {
       try{
@@ -156,7 +162,8 @@
         const chunk = vm.splitIntoChunks(tokens, 5);
         vm.message = chunk;
         const len = chunk.length;
-        const coordinates = vm.generateRandomPoints(len, [8.94760, 125.54078, 8.94758, 125.54102]);
+        //8.947608480452331,125.54084851002358, 8.947583908636489 ,125.54096687856872
+        const coordinates = vm.generateRandomPoints(len, [8.947608480452331,125.54084851002358, 8.947576394541912,125.54111317143395]);
         vm.coordinates = coordinates;
         vm.numberofVehicles = len;
         //console.log("this is object " + JSON.stringify(vm.coordinates))
@@ -189,7 +196,7 @@
 
     },
     watch: {
-     coordinates: {
+      coordinates: {
         handler: function(newValue, oldValue) {
           console.log("message changed from", oldValue, "to", newValue);
           this.coordinates = newValue;
@@ -218,13 +225,23 @@
 
           // Adding the heatmap layer to the map.
           this.map.addLayer(this.Heatmap);
-            
+           
         },
 
         deep: true,
         immediate: true
-
       },
+      numberofVehicles: {
+        handler: function(newValue, oldValue){
+          
+          if( newValue > oldValue ) {
+            this.numberofVehicles = newValue;
+          }else {
+            this.numberofVehicles = oldValue;
+          }
+        }
+      }
+
     }
   };
   </script>

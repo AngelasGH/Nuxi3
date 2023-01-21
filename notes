@@ -1,0 +1,38 @@
+<script>
+const { find, findOne, create, update, delete: remove } = useStrapi();
+
+//get all response
+const response = await find('restaurants');
+
+//get one restaurants by Id
+const response1 = await findOne('restaurants', restaurantId);
+
+//create new entity
+const newEntity = await create('restaurants', {
+    name: restaurantName,
+    description: restaurantDescription
+})
+
+//update existing entity
+await update('restaurants', restaurantId, {
+    name: restaurantName,
+    description: restaurantDescription,
+})
+
+//delete existing entity
+await delete('restaurants', restaurantId);
+
+//use .populate()
+const { find } = useStrapi()
+
+const posts = await find('posts', {
+    _populate: 'author'
+})
+
+
+</script>
+
+
+
+
+

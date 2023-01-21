@@ -1,8 +1,11 @@
 <template>
   <div>
-    
+    <!-- <Vehicles/> -->
+    <Strapi/>
+    <br>
     <!-- <Geo/> -->
     <Map/>
+    <!-- <Traffic/> -->
     <!-- <MyMap/> -->
     <!-- <MapContainer/> -->
   </div>

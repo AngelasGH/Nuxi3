@@ -53,7 +53,7 @@ async function processLineByLine(){
         for await(const line of rl) {
             console.log(`${line}`);
             io.send(line);
-            await sleep(5000)
+            await sleep(2000)
         }
 
         function sleep(ms){
